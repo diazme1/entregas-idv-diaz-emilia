@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b1kam0a8x7e1k"]
+
+[ext_resource type="Texture2D" uid="uid://dwg3vpmlm24nh" path="res://assets/textures/floor.png" id="1_6sa5u"]
+
+[node name="FloorTriangle" type="StaticBody2D" unique_id=1492377316]
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1975121478]
+position = Vector2(-2.5324712, 4.7683716e-06)
+scale = Vector2(1.2585595, 1.2424242)
+color = Color(0.16470589, 0.7058824, 0.3254902, 1)
+texture = ExtResource("1_6sa5u")
+polygon = PackedVector2Array(33, -32.195126, 33, 32.999992, -32.153847, 32.999992)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1644978649]
+position = Vector2(1.2000008, 3.3906517)
+scale = Vector2(0.9807692, 0.9488624)
+polygon = PackedVector2Array(39, -39.41894, 39, 41.33565, -43.027454, 40.690147)

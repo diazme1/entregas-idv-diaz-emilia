@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @onready var cannon: Node = $Cannon
 
@@ -7,6 +8,7 @@ extends CharacterBody2D
 @export var FRICTION_WEIGHT: float = 0.1
 @export var JUMP_SPEED: float = -500.0
 @export var GRAVITY: float = 10.0
+@export var PUSH_FORCE: float = 30.0
 
 var projectile_container: Node
 
@@ -49,4 +51,16 @@ func _physics_process(delta):
 	_get_input()
 	velocity.y += GRAVITY
 	move_and_slide()
+	for index in get_slide_collision_count():
+		var collision := get_slide_collision(index)
+		var collider := collision.get_collider()
+		if collider is RigidBody2D:
+			var push_direction := -collision.get_normal()
+			push_direction.y = 0.0
+			if not push_direction.is_zero_approx():
+				collider.apply_central_impulse(
+					push_direction.normalized() * PUSH_FORCE
+				)
 	
+func notify_hit() -> void:
+	queue_free()
